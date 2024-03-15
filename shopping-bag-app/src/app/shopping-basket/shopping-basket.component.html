@@ -1,0 +1,24 @@
+<div class="basket">
+    <div class="items">
+        @if (this.basketService.productsInBasket.length > 0) {
+            @for (product of this.basketService.productsInBasket; track product.id) {
+            <div class="item">
+                <div class="remove" (click)="removeItemFromBasket(product)">Remove item</div>
+                <div class="photo"><img [src]='product.image' alt=""></div>
+                <div class="description">{{ product.title }}</div>
+                <div class="price">
+                    <span class="quantity-area">
+                        <button [disabled]="product.quantity <= 1" (click)="product.quantity = product.quantity - 1">-</button>
+                        <span class="quantity">{{ product.quantity }}</span>
+                        <button (click)="product.quantity = product.quantity + 1">+</button>
+                    </span>
+                    <span class="amount">US$ {{ (product.price * product.quantity).toFixed(2) }}</span>
+                </div>
+            </div>
+            }
+            <div class="grand-total"> Grand Total: US$ {{ calculateGrandTotal().toFixed(2) }} </div>
+        } @else {
+            <h4>No items in bag yet.</h4>
+        }
+    </div>
+</div>

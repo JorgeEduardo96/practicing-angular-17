@@ -1,0 +1,14 @@
+@if(!showAddBook) {
+    <div class="container">
+        <h1>📖 Meus Livros</h1>
+        <div class="header-btns">
+            <button class="btn" (click)="showAddBook = true">Adicionar Livro +</button>
+        </div>
+        <div class="books-container">
+            <app-books [books]="books"></app-books>
+            <app-book-progress [books]="books"></app-book-progress>
+        </div>
+    </div>
+} @else {
+    <app-add-book (changeShowAddBookEvent)="changeShowAddBook()" (addBookEvent)="addBook($event)"></app-add-book>
+}

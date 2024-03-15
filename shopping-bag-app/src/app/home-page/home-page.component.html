@@ -1,0 +1,16 @@
+<div class="home">
+    <div class="products">
+        @for (product of products; track product.id) {
+            <div class="product">
+                <div class="product-image" [style]="{backgroundImage: 'url(' + product.image + ')'}"></div>
+                <h4>{{ product.title }}</h4>
+                <p class="price">US$ {{ product.price.toFixed(2) }}</p>
+                @if (!this.basketService.isInBag(product)) {
+                    <button (click)="addToBasket(product)">Add to basket</button>
+                } @else {
+                    <button class="remove" (click)="removeFromBasket(product)">Remove from basket</button>
+                }
+            </div>
+        }
+    </div>
+</div>

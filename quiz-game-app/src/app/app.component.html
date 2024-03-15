@@ -1,0 +1,26 @@
+<div id="app">
+    <app-scoreboard [winCount]="this.winCount" [loseCount]="this.loseCount"></app-scoreboard>
+
+    @if(this.question) {
+        <h1> {{this.question}} </h1>
+        @for (answer of answers; track $index) {
+            <input type="radio" name="options" [(ngModel)]="chosenAnswer" [value]="answer" [disabled]="this.answerSubmitted">
+            <label>{{ answer }}</label><br>
+        }
+
+        @if (!this.answerSubmitted) {
+            <button class="send" (click)="this.submitAnswer()" type="button">Send</button>
+        }
+
+        @if (this.answerSubmitted) {
+            @if (this.chosenAnswer === this.correctAnswer) {
+                <h4>{{'&#9989; Congrats, the answer ' +  this.chosenAnswer  + ' is correct!'}}</h4>
+            } @else {
+                <h4>{{'&#10060; I am sorry, you picked the wrong answer. The correct is ' +  this.correctAnswer +  '.'}}</h4>
+            }
+
+            <button (click)="this.getNewQuestion()" class="send" type="button">Next Question</button>
+        }
+    }
+
+</div>

@@ -1,0 +1,5 @@
+<div class="books-read">
+    <label for="progress">Seu Progresso</label><br>
+    <progress [value]="booksRead()" [max]="books.length"></progress>
+    <p>{{booksReadMessage()}}</p>
+</div>

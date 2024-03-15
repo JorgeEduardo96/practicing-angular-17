@@ -1,0 +1,31 @@
+<main id="app">
+            
+  <section class="todo-list">                            
+      <h3>Lista de Tarefas</h3>
+      
+      <div class="all-todos">
+        @for (todo of todoList; track $index) {
+          <div class="single-todo" [ngClass]="{'done' : todo.done ? true : false}" (click)="changeDone(todo)">
+            <p> {{ todo.text }} </p>
+          </div>
+        }                           
+      </div>
+
+      @if (todoList.length > 0) {
+        <button class="clear" (click)="clearAll()">Limpar tudo</button>
+      }      
+
+      <input type="text" [(ngModel)]="newTodo.text" placeholder="Escreva uma nova tarefa...">
+      <button class="add" (click)="addTodo()">Adicionar</button>
+
+      <div class="instructions">
+          Instruções:
+          <ul>
+              <li>Clique no texto da tarefa para alternar entre feita / não feita</li>
+              <li>Use o botão limpar tudo para remover todas as tarefas</li>
+              <li>Use o input para adicionar novas tarefas</li>
+          </ul>
+      </div>
+  </section>
+
+</main>

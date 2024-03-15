@@ -1,0 +1,23 @@
+<div class="books-list">
+    @for (book of books; track book.isdn) {
+        <div class="book">
+            @if(book.isRead) {
+                <div class="readIt">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                </div>
+            }
+            <div class="book-cover">
+                <img [src]="book.cover">
+                <button [ngClass]="{'isRead' : book.isRead ? true : false}" (click)="book.isRead = !book.isRead">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                    <span>{{ book.isRead ? 'Já li' : 'Ainda não li' }}</span>
+                </button>
+            </div>
+            <div class="book-datails">
+                <p class="book-author">{{book.author}}</p>
+                <h3 class="book-title">{{book.title}}</h3>
+                <p><fa-icon [icon]="faEye"></fa-icon>{{book.isbn}}</p>
+            </div>
+        </div>
+    }
+</div>

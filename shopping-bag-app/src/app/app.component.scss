@@ -1,0 +1,27 @@
+.nav {
+    padding: 16px 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(37, 37, 37);
+    color: white;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        margin-right: 10px;
+
+        &.active {
+            font-weight: bold;
+        }
+
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

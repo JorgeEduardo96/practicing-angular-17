@@ -1,0 +1,6 @@
+<div class="nav">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/shopping-basket" routerLinkActive="active">Shopping Basket {{ '(' + this.productsInBasketQuantity + ')' }}</a>
+</div>
+
+<router-outlet></router-outlet>

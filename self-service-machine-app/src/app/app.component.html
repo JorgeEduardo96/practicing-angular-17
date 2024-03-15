@@ -1,0 +1,51 @@
+<main>
+  <section class="items">
+    <h4>Selecione os produtos</h4>
+    @for (product of products; track product.id) {
+    <div class="product" (click)="product.active = !product.active">
+      <div class="photo">
+        <img [src]="product.photo">
+      </div>
+      <div class="description">
+        <span class="name">{{ product.name }}</span>
+        <span class="price">{{ product.price | currency: 'BRL' }}</span>
+        @if (product.active) {
+        <div class="quantity-area">
+          <button (click)="changeQuantity(product, $event, '-')" [disabled]="product.quantity <= 1">-</button>
+          <span class="quantity">{{ product.quantity }}</span>
+          <button (click)="changeQuantity(product, $event, '+')">+</button>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </section>
+
+  @if (total() > 0) {
+  <section class="summary">
+    <strong>Resumo do Pedido</strong>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products; track product.id) {
+        <tr>
+          @if (product.active) {
+          <td>{{ product.quantity + 'x ' + product.name }}</td>
+          <td>{{ (product.quantity * product.price).toFixed(2) | currency: 'BRL' }}</td>
+          }
+        </tr>
+        }
+        <tr>
+          <th>Total</th>
+          <th> {{ total().toFixed(2) | currency: 'BRL' }} </th>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  }
+</main>
